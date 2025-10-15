@@ -10,30 +10,30 @@ import (
 )
 
 type Response struct {
-	location Location `json:"location"`
-	current  Current  `json:"current"`
+	Location Location `json:"location"`
+	Current  Current  `json:"current"`
 }
 
 type Location struct {
-	name    string `json:"name"`
-	country string `json:"country"`
+	Name    string `json:"name"`
+	Country string `json:"country"`
 }
 
 type Current struct {
-	temp_c    int       `json:"temp_c"`
-	condition Condition `json:"condition"`
-	wind_kph  int       `json:"wind_kph"`
-	wind_dir  string    `json:"wind_dir"`
-	humidity  int       `json:"humidity"`
+	Temp_c    float64   `json:"temp_c"`
+	Condition Condition `json:"condition"`
+	Wind_kph  float64   `json:"wind_kph"`
+	Wind_dir  string    `json:"wind_dir"`
+	Humidity  int       `json:"humidity"`
 }
 
 type Condition struct {
-	text string `json:"text"`
+	Text string `json:"text"`
 }
 
 func main() {
 	API_key := "f36279aa4635403f869131542251510"
-	response, err := http.Get("http://api.weatherapi.com/v1/current.json?key=" + API_key + "&q=London&aqi=no")
+	response, err := http.Get("http://api.weatherapi.com/v1/current.json?key=" + API_key + "&q=Mbeya&aqi=no")
 	if err != nil {
 		fmt.Print(err.Error())
 		os.Exit(1)
@@ -47,8 +47,8 @@ func main() {
 	var responseObject Response
 	json.Unmarshal(responseData, &responseObject)
 
-	fmt.Println(responseObject.location.name)
-	fmt.Println(responseObject.location.country)
-	fmt.Println(responseObject.current.temp_c)
-	fmt.Println(responseObject.current.condition.text)
+	fmt.Println(responseObject.Location.Name)
+	fmt.Println(responseObject.Location.Country)
+	fmt.Println(responseObject.Current.Temp_c)
+	fmt.Println(responseObject.Current.Condition.Text)
 }
