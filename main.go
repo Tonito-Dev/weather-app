@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"log"
@@ -42,5 +43,12 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(string(responseData))
+
+	var responseObject Response
+	json.Unmarshal(responseData, &responseObject)
+
+	fmt.Println(responseObject.location.name)
+	fmt.Println(responseObject.location.country)
+	fmt.Println(responseObject.current.temp_c)
+	fmt.Println(responseObject.current.condition.text)
 }
