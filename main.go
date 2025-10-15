@@ -10,7 +10,7 @@ import (
 
 func main() {
 	API_key := "f36279aa4635403f869131542251510"
-	response, err := http.Get("http://api.weatherapi.com/v1/current.json?key=" + API_key)
+	response, err := http.Get("http://api.weatherapi.com/v1/current.json?key=" + API_key + "&q=London&aqi=no")
 	if err != nil {
 		fmt.Print(err.Error())
 		os.Exit(1)
