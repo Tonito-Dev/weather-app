@@ -47,8 +47,8 @@ func main() {
 	var responseObject Response
 	json.Unmarshal(responseData, &responseObject)
 
-	fmt.Println(responseObject.Location.Name)
-	fmt.Println(responseObject.Location.Country)
-	fmt.Println(responseObject.Current.Temp_c)
-	fmt.Println(responseObject.Current.Condition.Text)
+	fmt.Println("Region: ", responseObject.Location.Name)
+	fmt.Println("Country: ", responseObject.Location.Country)
+	fmt.Println("Temp: ", responseObject.Current.Temp_c, "Celsius")
+	fmt.Println("Condition: ", responseObject.Current.Condition.Text)
 }
