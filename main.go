@@ -7,8 +7,11 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
+// structs for the data we want from the API
 type Response struct {
 	Location Location `json:"location"`
 	Current  Current  `json:"current"`
@@ -32,7 +35,13 @@ type Condition struct {
 }
 
 func main() {
-	API_key := "f36279aa4635403f869131542251510"
+	// load .env file
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
+	API_key := os.Getenv("API_KEY")
 	response, err := http.Get("http://api.weatherapi.com/v1/current.json?key=" + API_key + "&q=Mbeya&aqi=no")
 	if err != nil {
 		fmt.Print(err.Error())
