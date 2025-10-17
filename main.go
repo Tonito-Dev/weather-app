@@ -35,6 +35,12 @@ type Condition struct {
 }
 
 func main() {
+	// input region for weather
+	var region string
+
+	fmt.Print("Enter Region to check weather status:")
+	fmt.Scanln(&region)
+
 	// load .env file
 	err := godotenv.Load()
 	if err != nil {
@@ -42,7 +48,11 @@ func main() {
 	}
 
 	API_key := os.Getenv("API_KEY")
-	response, err := http.Get("http://api.weatherapi.com/v1/current.json?key=" + API_key + "&q=Mbeya&aqi=no")
+	if API_key == "" {
+		log.Fatal("No API key found, try set weather API key")
+	}
+
+	response, err := http.Get("http://api.weatherapi.com/v1/current.json?key=" + API_key + "&q=" + region + "&aqi=no")
 	if err != nil {
 		fmt.Print(err.Error())
 		os.Exit(1)
