@@ -1,1 +1,26 @@
+# Ignore environment variables and secrets
 .env
+.env.*
+
+# Ignore compiled Go binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Ignore local dependency directories and build output
+bin/
+build/
+dist/
+
+# Ignore IDE/editor folders
+.vscode/
+.idea/
+*.swp
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
