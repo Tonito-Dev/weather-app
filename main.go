@@ -35,11 +35,14 @@ type Condition struct {
 }
 
 func main() {
-	// input region for weather
-	var region string
+	args := os.Args
 
-	fmt.Print("Enter Region to check weather status:")
-	fmt.Scanln(&region)
+	if len(args) < 2 {
+		fmt.Println("Usage: go run main.go <city-name>")
+	}
+
+	// input region for weather
+	region := args[1]
 
 	// load .env file
 	err := godotenv.Load()
@@ -68,6 +71,7 @@ func main() {
 
 	fmt.Println("Region: ", responseObject.Location.Name)
 	fmt.Println("Country: ", responseObject.Location.Country)
-	fmt.Println("Temp: ", responseObject.Current.Temp_c, "Celsius")
+	fmt.Println("Temp: ", responseObject.Current.Temp_c, "°C")
 	fmt.Println("Condition: ", responseObject.Current.Condition.Text)
+	fmt.Println("Humidity: ", responseObject.Current.Humidity)
 }
