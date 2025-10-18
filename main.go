@@ -41,8 +41,8 @@ func main() {
 		fmt.Println("Usage: go run main.go <city-name>")
 	}
 
-	// input region for weather
-	region := args[1]
+	// input city for weather
+	city := args[1]
 
 	// load .env file
 	err := godotenv.Load()
@@ -55,7 +55,7 @@ func main() {
 		log.Fatal("No API key found, try set weather API key")
 	}
 
-	response, err := http.Get("http://api.weatherapi.com/v1/current.json?key=" + API_key + "&q=" + region + "&aqi=no")
+	response, err := http.Get("http://api.weatherapi.com/v1/current.json?key=" + API_key + "&q=" + city + "&aqi=no")
 	if err != nil {
 		fmt.Print(err.Error())
 		os.Exit(1)
